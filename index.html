@@ -5,16 +5,26 @@
 </head>
 
 <body>
-    <div x-data="{
-        posts: {},
-        async getData() {
-            this.posts = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json();
-        }
-    }">
-        <button x-on:click="getData">Send get request</button>
-        Data returned: <strong x-text="posts[0].title">Placeholder</strong>
+   <div x-data="{
+    pokemon: null,
 
-    </div>
+    getPokemon() {
+        fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+            .then((response) => response.json())
+            .then((json) => this.pokemon = json);
+    }
+}" x-init="getPokemon()">
+    <p x-text="pokemon.abilities[0].ability.name"></p>
+    <p x-text="pokemon.abilities[1].ability.name"></p>
+</div>
+    
+<script>
+    function getPokemon() {
+    fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+        .then((response) => response.json())
+        .then((json) => this.pokemon = json);
+    }
+</script>
 </body>
 
 </html>
