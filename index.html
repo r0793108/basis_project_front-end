@@ -9,7 +9,7 @@
     pokemon: null,
 
     getPokemon() {
-        fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+        fetch('https://pokeapi.co/api/v2/pokemon/Cosmog')
             .then((response) => response.json())
             .then((json) => this.pokemon = json);
     }
@@ -20,7 +20,7 @@
     
 <script>
     function getPokemon() {
-    fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+    fetch('https://pokeapi.co/api/v2/pokemon/Cosmog')
         .then((response) => response.json())
         .then((json) => this.pokemon = json);
     }
