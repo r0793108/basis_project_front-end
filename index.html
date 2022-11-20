@@ -2,29 +2,79 @@
 
 <head>
     <script defer src="https://unpkg.com/alpinejs@3.5.0/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body>
-   <div x-data="{
-    pokemon: null,
+<body style="padding: 100px;">
+  <div x-data="{
+        club: null,
 
-    getPokemon() {
-        fetch('https://pokeapi.co/api/v2/pokemon/jigglypuff')
-            .then((response) => response.json())
-            .then((json) => this.pokemon = json);
-    }
-}" x-init="getPokemon()">
-    <p x-text="pokemon.abilities[0].ability.name"></p>
-    <p x-text="pokemon.abilities[1].ability.name"></p>
-</div>
-    
+        getClub() {
+            fetch('https://api-service-r0793108.cloud.okteto.net/year/210')
+                .then((response) => response.json())
+                .then((json) => this.year = json);
+        }
+}" x-init="getClub()" class="card" style="width: 18rem;">
+      <div class="card-body">
+            <h3 class="card-title">Year</h3>
+            <p class="card-text">Click the button to demonstrate the prompt box.</p>
+            <button onclick="myFunctionYear()" class="card-button">Try it</button>
+            <p x-text="year.return[0]" class="card-text"></p>
+            <p id="demo2" class="card-text"></p>
+    </div>
+        <p x-text="year.return[0]"></p>
+    </div>
+
+  <div x-data="{
+        year: null,
+
+        getYear() {
+            fetch('https://api-service-r0793108.cloud.okteto.net/club/Barcelona')
+                .then((response) => response.json())
+                .then((json) => this.year = json);
+        }
+}" x-init="getClub()" class="card" style="width: 18rem;">
+
+
+    <div class="card-body">
+            <h3 class="card-title">Club</h3>
+            <p class="card-text">Click the button to demonstrate the prompt box.</p>
+            <button onclick="myFunctionClub()" class="card-button">Try it</button>
+            <p x-text="year.return[0]" class="card-text"></p>
+            <p id="demo" class="card-text"></p>
+    </div>
+
+    </div>
 <script>
-    function getPokemon() {
-    fetch('https://pokeapi.co/api/v2/pokemon/jigglypuff')
-        .then((response) => response.json())
-        .then((json) => this.pokemon = json);
+    function getClub() {
+        fetch('https://api-service-r0793108.cloud.okteto.net/club/Barcelona')
+            .then((response) => response.json())
+            .then((json) => this.club = json);
     }
+
+    function getYear() {
+        fetch('https://api-service-r0793108.cloud.okteto.net/year/2011')
+            .then((response) => response.json())
+            .then((json) => this.year = json);
+    }
+
+    function myFunctionClub() {
+  let club = prompt("Please enter the club", "Barcelona");
+  if (club != null) {
+    document.getElementById("demo").innerHTML =
+    "the club is " + club;
+  }
+}
+
+function myFunctionYear() {
+  let year = prompt("Please enter the year", "2010");
+  if (year != null) {
+    document.getElementById("demo2").innerHTML =
+    "the year is " + year;
+  }
+}
 </script>
+
 </body>
 
 </html>
